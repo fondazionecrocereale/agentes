@@ -72,6 +72,8 @@ export default function LandingPage() {
               pixelData={{
                 content_name: "Header WhatsApp",
                 content_category: "Landing Header",
+                value: SITE_CONFIG.initialSetupArs,
+                currency: "ARS",
               }}
             />
             <a
@@ -94,7 +96,7 @@ export default function LandingPage() {
         {/* Hero directo */}
         <section className="text-center space-y-4 max-w-3xl mx-auto">
           <span className="inline-block px-3.5 py-1 rounded-full bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-bold uppercase tracking-wider">
-            Promos Mayoristas + Panel Propio Gratis
+            Promos Mayoristas + Creación de Panel Propio
           </span>
 
           <h1 className="font-heading text-3xl sm:text-5xl font-black tracking-tight leading-tight">
@@ -132,6 +134,8 @@ export default function LandingPage() {
               pixelData={{
                 content_name: "Hero Pedir Promo",
                 content_category: "Landing Hero",
+                value: SITE_CONFIG.initialSetupArs,
+                currency: "ARS",
               }}
             />
 
@@ -176,7 +180,7 @@ export default function LandingPage() {
         <section className="space-y-6">
           <div className="text-center">
             <h2 className="font-heading text-xl sm:text-2xl font-extrabold text-white">
-              Promos Mayoristas + Creación de Panel Gratis
+              Promos Mayoristas + Creación de Panel
             </h2>
             <p className="text-xs sm:text-sm text-slate-400 mt-1">
               Elegí tu pack para habilitar tu panel al instante
@@ -232,10 +236,15 @@ export default function LandingPage() {
                     </div>
                   </div>
 
-                  <ul className="space-y-1 text-xs text-slate-300 pt-2 border-t border-white/10">
+                  <ul className="space-y-1.5 text-xs text-slate-300 pt-2 border-t border-white/10">
                     <li className="flex items-center gap-1.5">
-                      <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                      <span>Panel propio gratis</span>
+                      <Check className="w-3.5 h-3.5 text-amber-400 shrink-0" />
+                      <span>
+                        Initial Setup:{" "}
+                        <strong className="text-amber-300">
+                          ${formatNum(pack.initialSetup)} ARS
+                        </strong>
+                      </span>
                     </li>
                     <li className="flex items-center gap-1.5">
                       <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
@@ -250,11 +259,13 @@ export default function LandingPage() {
                     label="WhatsApp"
                     message={`Hola! Quiero la ${pack.name}: pago $${formatNum(
                       pack.clientPays
-                    )} y recibo ${formatNum(pack.chips)} en mi panel propio.`}
+                    )} + Initial Setup $${formatNum(
+                      pack.initialSetup
+                    )} ARS y recibo ${formatNum(pack.chips)} en mi panel.`}
                     pixelData={{
                       content_name: pack.name,
                       content_category: "Promo Pack",
-                      value: pack.clientPays,
+                      value: pack.initialSetup,
                       currency: "ARS",
                     }}
                   />
@@ -262,9 +273,9 @@ export default function LandingPage() {
                     href={buildTgUrl(
                       `Hola! Quiero la ${pack.name}: pago $${formatNum(
                         pack.clientPays
-                      )} y recibo ${formatNum(
-                        pack.chips
-                      )} en mi panel propio.`
+                      )} + Initial Setup $${formatNum(
+                        pack.initialSetup
+                      )} ARS y recibo ${formatNum(pack.chips)} en mi panel.`
                     )}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -327,6 +338,8 @@ export default function LandingPage() {
         pixelData={{
           content_name: "Floating WhatsApp Widget",
           content_category: "Landing Floating",
+          value: SITE_CONFIG.initialSetupArs,
+          currency: "ARS",
         }}
       />
 

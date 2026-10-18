@@ -4,13 +4,16 @@ export const SITE_CONFIG = {
     process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5491123456789",
   telegramUsername:
     process.env.NEXT_PUBLIC_TELEGRAM_USERNAME || "GanamosAgentesVIP",
-  fbPixelId: process.env.NEXT_PUBLIC_FB_PIXEL_ID || "",
+  fbPixelId: process.env.NEXT_PUBLIC_FB_PIXEL_ID || "1713967079582707",
 
   // Webs de clientes (no paneles de agentes)
   ganamosClientUrl:
     process.env.NEXT_PUBLIC_GANAMOS_URL || "https://ganamos.net",
   ganamosVipClientUrl:
     process.env.NEXT_PUBLIC_GANAMOS_VIP_URL || "https://ganamosvip.com",
+
+  // Costo de alta / Setup inicial del panel en cada promo
+  initialSetupArs: 50000,
 
   // Tu compra mayorista: Enviás $200.000 -> Te acreditan 1.200.000 ($0.1667 / ~$0.17 c/u).
   packs: [
@@ -19,7 +22,8 @@ export const SITE_CONFIG = {
       name: "Promo Inicial",
       badge: "Para arrancar",
       chips: 70000,
-      clientPays: 35000, // Tu costo ($0.17): $11.900 -> Tu ganancia limpia: +$23.100 (66% para vos)
+      clientPays: 35000,
+      initialSetup: 50000,
       pricePerChip: 0.5,
       featured: false,
     },
@@ -28,7 +32,8 @@ export const SITE_CONFIG = {
       name: "Promo Cajero",
       badge: "🔥 Muy pedida",
       chips: 130000,
-      clientPays: 65000, // Tu costo ($0.17): $22.100 -> Tu ganancia limpia: +$42.900 (66% para vos)
+      clientPays: 65000,
+      initialSetup: 50000,
       pricePerChip: 0.5,
       featured: true,
     },
@@ -37,7 +42,8 @@ export const SITE_CONFIG = {
       name: "Promo Agente Pro",
       badge: "Bonificada",
       chips: 210000,
-      clientPays: 100000, // Tu costo ($0.17): $35.700 -> Tu ganancia limpia: +$64.300 (64% para vos)
+      clientPays: 100000,
+      initialSetup: 50000,
       pricePerChip: 0.476,
       featured: false,
     },
@@ -46,7 +52,8 @@ export const SITE_CONFIG = {
       name: "Promo Súper VIP",
       badge: "Mayorista",
       chips: 500000,
-      clientPays: 165000, // Tu costo ($0.17): $85.000 -> Tu ganancia limpia: +$80.000 (49% para vos)
+      clientPays: 165000,
+      initialSetup: 50000,
       pricePerChip: 0.33,
       featured: false,
     },

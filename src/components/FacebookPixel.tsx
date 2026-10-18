@@ -1,12 +1,13 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Script from "next/script";
 import { SITE_CONFIG } from "@/config/site";
 
 declare global {
   interface Window {
     fbq?: (...args: unknown[]) => void;
+    _fbq?: unknown;
   }
 }
 
@@ -27,14 +28,18 @@ export function trackFbContact(payload?: FbContactPayload) {
 }
 
 export default function FacebookPixel() {
-  const pixelId = SITE_CONFIG.fbPixelId;
+  const pixelId = SITE_CONFIG.fbPixelId || "1713967079582707";
 
-  if (!pixelId) return null;
+  useEffect(() => {
+    if (typeof window !== "undefined" && typeof window.fbq === "function") {
+      window.fbq("track", "PageView");
+    }
+  }, []);
 
   return (
     <>
       <Script
-        id="facebook-pixel"
+        id="fb-pixel-init"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
@@ -64,4 +69,3 @@ export default function FacebookPixel() {
     </>
   );
 }
-
