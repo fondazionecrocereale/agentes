@@ -16,12 +16,16 @@ export interface FbContactPayload {
   content_category?: string;
   value?: number;
   currency?: string;
+  test_event_code?: string;
 }
 
 export function trackFbContact(payload?: FbContactPayload) {
+  const testEventCode = SITE_CONFIG.fbTestEventCode || "TEST84823";
+
   if (typeof window !== "undefined" && typeof window.fbq === "function") {
     window.fbq("track", "Contact", {
       currency: "ARS",
+      test_event_code: testEventCode,
       ...payload,
     });
   }
@@ -29,12 +33,15 @@ export function trackFbContact(payload?: FbContactPayload) {
 
 export default function FacebookPixel() {
   const pixelId = SITE_CONFIG.fbPixelId || "1713967079582707";
+  const testEventCode = SITE_CONFIG.fbTestEventCode || "TEST84823";
 
   useEffect(() => {
     if (typeof window !== "undefined" && typeof window.fbq === "function") {
-      window.fbq("track", "PageView");
+      window.fbq("track", "PageView", {
+        test_event_code: testEventCode,
+      });
     }
-  }, []);
+  }, [testEventCode]);
 
   return (
     <>
@@ -52,7 +59,7 @@ export default function FacebookPixel() {
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
             fbq('init', '${pixelId}');
-            fbq('track', 'PageView');
+            fbq('track', 'PageView', { test_event_code: '${testEventCode}' });
           `,
         }}
       />

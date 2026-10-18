@@ -5,6 +5,7 @@ export const SITE_CONFIG = {
   telegramUsername:
     process.env.NEXT_PUBLIC_TELEGRAM_USERNAME || "GanamosAgentesVIP",
   fbPixelId: process.env.NEXT_PUBLIC_FB_PIXEL_ID || "1713967079582707",
+  fbTestEventCode: process.env.NEXT_PUBLIC_FB_TEST_EVENT_CODE || "TEST84823",
 
   // Webs de clientes (no paneles de agentes)
   ganamosClientUrl:
