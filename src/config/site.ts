@@ -4,6 +4,7 @@ export const SITE_CONFIG = {
     process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5491123456789",
   telegramUsername:
     process.env.NEXT_PUBLIC_TELEGRAM_USERNAME || "GanamosAgentesVIP",
+  fbPixelId: process.env.NEXT_PUBLIC_FB_PIXEL_ID || "",
 
   // Webs de clientes (no paneles de agentes)
   ganamosClientUrl:
@@ -12,7 +13,6 @@ export const SITE_CONFIG = {
     process.env.NEXT_PUBLIC_GANAMOS_VIP_URL || "https://ganamosvip.com",
 
   // Tu compra mayorista: Enviás $200.000 -> Te acreditan 1.200.000 ($0.1667 / ~$0.17 c/u).
-  // Con estas promos (ej. $65.000 -> 130.000) duplicás y hasta triplicás tus $200.000:
   packs: [
     {
       id: "promo-70k",

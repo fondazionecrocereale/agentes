@@ -11,14 +11,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { SITE_CONFIG } from "@/config/site";
-
-function WhatsAppIcon({ className = "w-5 h-5" }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="currentColor">
-      <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824zm-3.423-14.416c-6.627 0-12 5.373-12 12 0 2.625.846 5.059 2.284 7.033l-1.494 5.467 5.602-1.469c1.914 1.251 4.199 1.969 6.608 1.969 6.627 0 12-5.373 12-12s-5.373-12-12-12z" />
-    </svg>
-  );
-}
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 function TelegramIcon({ className = "w-5 h-5" }: { className?: string }) {
   return (
@@ -32,9 +25,6 @@ const formatNum = (n: number) =>
   new Intl.NumberFormat("es-AR", { maximumFractionDigits: 0 }).format(
     Math.round(n)
   );
-
-const buildWaUrl = (msg: string) =>
-  `https://wa.me/${SITE_CONFIG.whatsappNumber.replace(/[^0-9]/g, "")}?text=${encodeURIComponent(msg)}`;
 
 const buildTgUrl = (msg: string) =>
   `https://t.me/${SITE_CONFIG.telegramUsername.replace(/^@/, "")}?text=${encodeURIComponent(msg)}`;
@@ -75,17 +65,15 @@ export default function LandingPage() {
           </div>
 
           <div className="flex items-center gap-2">
-            <a
-              href={buildWaUrl(
-                "Hola! Quiero crear mi panel de Agente y ver las promos disponibles."
-              )}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs sm:text-sm transition"
-            >
-              <WhatsAppIcon className="w-4 h-4" />
-              <span>WhatsApp</span>
-            </a>
+            <WhatsAppButton
+              variant="header"
+              label="WhatsApp"
+              message="Hola! Quiero crear mi panel de Agente y ver las promos disponibles."
+              pixelData={{
+                content_name: "Header WhatsApp",
+                content_category: "Landing Header",
+              }}
+            />
             <a
               href={buildTgUrl(
                 "Hola! Quiero crear mi panel de Agente y ver las promos disponibles."
@@ -135,19 +123,17 @@ export default function LandingPage() {
             tu pack en promo y listo.
           </p>
 
-          {/* Botones Principales a WhatsApp y Telegram */}
+          {/* Botones Principales a WhatsApp (con Pixel) y Telegram */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3.5 pt-2">
-            <a
-              href={buildWaUrl(
-                "Hola! Quiero pedir mi panel en Ganamos / GanamosVIP y aprovechar una promo."
-              )}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-7 py-4 rounded-2xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-heading font-extrabold text-base shadow-lg shadow-emerald-500/25 transition"
-            >
-              <WhatsAppIcon className="w-5 h-5" />
-              <span>Pedir Promo por WhatsApp</span>
-            </a>
+            <WhatsAppButton
+              variant="hero"
+              label="Pedir Promo por WhatsApp"
+              message="Hola! Quiero pedir mi panel en Ganamos / GanamosVIP y aprovechar una promo."
+              pixelData={{
+                content_name: "Hero Pedir Promo",
+                content_category: "Landing Hero",
+              }}
+            />
 
             <a
               href={buildTgUrl(
@@ -259,21 +245,19 @@ export default function LandingPage() {
                 </div>
 
                 <div className="grid grid-cols-2 gap-2 pt-4 mt-4 border-t border-white/10">
-                  <a
-                    href={buildWaUrl(
-                      `Hola! Quiero la ${pack.name}: pago $${formatNum(
-                        pack.clientPays
-                      )} y recibo ${formatNum(
-                        pack.chips
-                      )} en mi panel propio.`
-                    )}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="py-2.5 px-2.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-bold text-xs flex items-center justify-center gap-1 transition"
-                  >
-                    <WhatsAppIcon className="w-3.5 h-3.5" />
-                    <span>WhatsApp</span>
-                  </a>
+                  <WhatsAppButton
+                    variant="card"
+                    label="WhatsApp"
+                    message={`Hola! Quiero la ${pack.name}: pago $${formatNum(
+                      pack.clientPays
+                    )} y recibo ${formatNum(pack.chips)} en mi panel propio.`}
+                    pixelData={{
+                      content_name: pack.name,
+                      content_category: "Promo Pack",
+                      value: pack.clientPays,
+                      currency: "ARS",
+                    }}
+                  />
                   <a
                     href={buildTgUrl(
                       `Hola! Quiero la ${pack.name}: pago $${formatNum(
@@ -334,6 +318,17 @@ export default function LandingPage() {
           </div>
         </section>
       </main>
+
+      {/* Widget Flotante de WhatsApp con Pixel Contact */}
+      <WhatsAppButton
+        variant="floating"
+        label="¡Pedí tu Panel!"
+        message="Hola! Quiero información para activar mi panel en Ganamos / GanamosVIP."
+        pixelData={{
+          content_name: "Floating WhatsApp Widget",
+          content_category: "Landing Floating",
+        }}
+      />
 
       {/* Footer Simple */}
       <footer className="relative z-10 border-t border-white/10 py-6 text-center text-xs text-slate-500">

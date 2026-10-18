@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import FacebookPixel from "@/components/FacebookPixel";
 
 export const metadata: Metadata = {
   title: "Ganamos & GanamosVIP | Paneles Oficiales para Agentes y Cajeros",
@@ -27,6 +28,7 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased selection:bg-amber-500 selection:text-slate-950">
+        <FacebookPixel />
         {children}
       </body>
     </html>
